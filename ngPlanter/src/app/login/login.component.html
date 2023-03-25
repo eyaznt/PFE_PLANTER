@@ -17,7 +17,7 @@
       </div>
       <div class="form-group">
         <label for="pwd">Password:</label>
-        <input type="password" class="form-control"  placeholder="Enter password" name="password" [(ngModel)]="user.password" #password="ngModel" requiered
+        <input type="password" class="form-control"  placeholder="Enter password" name="password" [(ngModel)]="user.password" #password="ngModel" required
         [class.is-invalid]="password.invalid && password.touched"
         >
         <small class="text-danger" [class.d-none]="password.valid ||password.untouched">password is a requiered field</small>
