@@ -6,4 +6,5 @@ import com.Whitecape.PFE.models.Plant;
 
 public interface PlantRepository extends MongoRepository<Plant , String> {
 	Plant findByName(String name);
+	Plant findByType(String type);
 }
