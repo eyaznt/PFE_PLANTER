@@ -1,36 +1,47 @@
-
-<div class="container">
-  <h2>User Sign Up</h2>
-  <form #signupform="ngForm" (ngSubmit)="signupUser()">
-    <small class="class.text-danger">{{ msg }}</small>
+<div class="form-container mat-elevation-z5">
+  <h2>Sign up</h2>
+  <form [formGroup]="signupForm" (ngSubmit)="SignUp()">
     <div class="form-group">
-      <label for="username">Name:</label>
-      <input type="text" class="form-control" placeholder="Enter username" name="username" [(ngModel)]="user.username" #username="ngModel" required
-        [class.is-invalid]="username.invalid && username.touched">
-      <small class="text-danger" [class.d-none]="username.valid || username.untouched">Name is a required field</small>
+      <label>Username</label>
+      <mat-form-field>
+        <input matInput formControlName="username" placeholder="Username">
+        <mat-error *ngIf="username?.errors?.['required']">Username is required</mat-error>
+      </mat-form-field>
     </div>
     <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" placeholder="Enter email" name="email" [(ngModel)]="user.email" #email="ngModel" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
-      <div *ngIf="email.errors && (email.invalid && email.touched)">
-        <small class="text-danger" *ngIf="email.errors['required']">Email is a required field</small>
-        <small class="text-danger" *ngIf="email.errors['pattern']">Enter a valid email</small>
-      </div>
+      <label>Email</label>
+      <mat-form-field>
+        <input matInput formControlName="email" placeholder="Email">
+        <mat-error *ngIf="email?.errors?.['required']">Email is required</mat-error>
+        <mat-error *ngIf="email?.errors?.['email']">Please enter a valid email format</mat-error>
+      </mat-form-field>
     </div>
     <div class="form-group">
-      <label for="password">Password:</label>
-      <input type="password" class="form-control" placeholder="Enter password" name="password" [(ngModel)]="user.password" #password="ngModel" required
-        [class.is-invalid]="password.invalid && password.touched">
-      <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is a required field</small>
+      <label>Phone Number</label>
+      <mat-form-field>
+        <input matInput formControlName="phone" placeholder="Phone Number">
+        <mat-error *ngIf="phone?.errors?.['required']">Phone number is required</mat-error>
+      </mat-form-field>
     </div>
     <div class="form-group">
-      <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" class="form-control" placeholder="Enter confirm password" name="confirmPassword" [(ngModel)]="confirmedPassword" #confirmPasswordInput="ngModel" required [class.is-invalid]="confirmPasswordInput.invalid && confirmPasswordInput.touched">
-      <small class="text-danger" [class.d-none]="(confirmPasswordInput.value==password.value) || confirmPasswordInput.untouched">Passwords don't match, please enter them again.</small>
+      <label>Password</label>
+      <mat-form-field>
+        <input matInput formControlName="password" type="password" placeholder="Password">
+        <mat-error *ngIf="password?.errors?.['required']">Password is required</mat-error>
+      </mat-form-field>
     </div>
-    <button [disabled]="signupform.form.invalid" type="submit" class="btn btn-info">Sign Up</button>
+    
+    <div class="form-group">
+      <label>Confirm Password</label>
+      <mat-form-field>
+        <input matInput formControlName="confirmPassword" type="password" placeholder="Confirm Password">
+        <mat-error *ngIf="confirmPassword?.errors?.['required']">Confirmation password is required</mat-error>
+        <mat-error *ngIf="confirmPassword?.value !== password?.value">Passwords do not match</mat-error>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button class="submit-button" type="submit" [disabled]="!signupForm.valid">Sign up</button>
+    <p>Already have an account? <a routerLink="/login">Log in here</a></p>
   </form>
-  <small class="float-right" (click)="gotologin()">Already have an account? Login here</small>
-</div>
 
-  
+
+</div>
