@@ -1,0 +1,26 @@
+<p>user-profile works!</p>
+<div class="container">
+    <h1>Welcome to your account!</h1>
+  
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Plant List</h2>
+        <select [(ngModel)]="selectedPlantId">
+          <option value="">-- Select a plant --</option>
+          <option *ngFor="let plant of plants" [value]="plant.id">{{ plant.name }}</option>
+        </select>
+        <button (click)="addPlant()">Add Plant</button>
+  
+        <ul>
+          <li *ngFor="let plant of userPlants">{{ plant.name }}</li>
+        </ul>
+      </div>
+  
+      <div class="col-md-8">
+        <h2>User Info</h2>
+        <p>Name: {{ username }}</p>
+        <p>Email: {{ email }}</p>
+      </div>
+    </div>
+  </div>
+          
