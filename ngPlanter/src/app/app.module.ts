@@ -17,13 +17,21 @@ import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginsuccessComponent } from './loginsuccess/loginsuccess.component';
 import { SuccessComponent } from './success/success.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuard } from './auth/auth.guard';
+import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     LoginsuccessComponent,
     SignupComponent,
-    SuccessComponent
+    SuccessComponent,
+    UserProfileComponent,
+    NavbarComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -35,10 +43,12 @@ import { SuccessComponent } from './success/success.component';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    NoopAnimationsModule,
+
     ReactiveFormsModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ] ,
-  providers: [],
+  providers:  [ AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

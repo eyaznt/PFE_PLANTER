@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- Logo -->
+    <a class="navbar-brand" href="#">
+      <img src="../assets/images/logo.png" alt="Logo">
+    </a>
+
+    <!-- Notification Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNotification" aria-controls="navbarNotification" aria-expanded="false" aria-label="Toggle notification">
+      <i class="fa fa-bell"></i>
+    </button>
+
+    <!-- Navigation Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/profile">
+            <i class="fa fa-user"></i> Account
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <i class="fa fa-bell"></i> Notifications
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Sidebar -->
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard">
+              <i class="fa fa-tachometer"> </i> Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()">
+              <i class="fa fa-sign-out"></i> Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>

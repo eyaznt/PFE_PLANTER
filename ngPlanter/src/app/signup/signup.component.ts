@@ -20,6 +20,7 @@ export class SignupComponent implements OnInit {
   
   signupForm!: FormGroup;
 
+
   constructor(private fb: FormBuilder, private router: Router,  private userService: UserService,) { }
 
   ngOnInit() {
@@ -30,6 +31,7 @@ export class SignupComponent implements OnInit {
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required]
     }, { validator: this.passwordMatchValidator });
+
   }
 
   SignUp() {
@@ -60,7 +62,6 @@ export class SignupComponent implements OnInit {
     });
   }
     
-  //alert('Sign up successful!');
 
   get username() { return this.signupForm.get('username'); }
   get email() { return this.signupForm.get('email'); }
@@ -83,4 +84,49 @@ export class SignupComponent implements OnInit {
 
 
 
+
+// import { Component, OnInit } from '@angular/core';
+// import { NgForm } from '@angular/forms';
+// import { Router } from '@angular/router';'
+// import { User } from '../user';
+// import { UserService } from '../user.service';
+
+// @Component({
+//   selector: 'app-signup',
+//   templateUrl: './signup.component.html',
+//   styleUrls: ['./signup.component.css']
+// })
+// export class SignupComponent implements OnInit {
+//   user = new User();
+//   confirmedPassword: string = '';
+//   msg = '';
+
+//   constructor(private _service: UserService, private _router: Router) {}
+
+//   ngOnInit() {}
+
+//   signupUser() {
+//     if (this.user.password !== this.confirmedPassword) {
+//       this.msg = "Passwords don't match, please enter them again.";
+//       return;
+//     }
+//     this._service.registerUserFromRemote(this.user).subscribe({
+//       next: data => {
+//         console.log('response received');
+//         this._router.navigate(['/success']);
+//       },
+//       error: error => {
+//         console.log('exception occurred');
+//         this.msg = 'Email already exists, please try another one.';
+//         console.error(error);
+//         console.log(error.status);
+//         console.log(error.error);
+//       }
+//     });
+//   }
+
+//   gotologin() {
+//     this._router.navigate(['/login']);
+//   }
+// }
 
