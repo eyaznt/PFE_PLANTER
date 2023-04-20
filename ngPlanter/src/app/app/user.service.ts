@@ -33,8 +33,9 @@ export class UserService {
   }
 
   logoutUserFromRemote(email: string): Observable<any> {
-    return this._http.post<any>("http://localhost:8080/users/logout", email);
+    return this._http.get<any>(`http://localhost:8080/users/logout/${email}`);
   }
+  
 
   updateUser(email: string, user: User): Observable<any> {
     const url = `http://localhost:8080/users/update/${email}`;

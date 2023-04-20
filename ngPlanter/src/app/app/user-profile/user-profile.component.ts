@@ -6,24 +6,33 @@ import { User } from '../user';
 import { AuthGuard } from '../auth/auth.guard';
 import 'zone.js/dist/long-stack-trace-zone';
 import { AuthService } from '../auth/auth.service';
+import { PlanterService } from '../planter.service';
+import { Planter } from '../planter';
 
 
 @Component({
   selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
+  templateUrl: './user-profile.component.html', 
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
   currentUser: User;
   plants: Plant[] = [];
   selectedPlantId: string = '';
-  userPlants: Plant[] = [];
   email: string = '';
   username: string = '';
-  
+  userPlanter: Planter[] = [];
+  userId: string = '';
 
-  constructor(private plantService: PlantService, private userService: UserService, private authGuard: AuthGuard,private authService: AuthService) {
+  constructor(
+    private plantService: PlantService,
+    private userService: UserService,
+    private authGuard: AuthGuard,
+    private authService: AuthService,
+    private planterService: PlanterService,
+  ) {
     this.currentUser = new User('', '', '', 0);
+    this.userId = '';
   }
 
   ngOnInit() {
@@ -31,45 +40,101 @@ export class UserProfileComponent implements OnInit {
     const currentUserEmail = sessionStorage.getItem('currentUserEmail');
     if (currentUserEmail) {
       this.userService.getUserByEmail(currentUserEmail).subscribe(
-        (user: User) => {
-          this.currentUser = user;
-          this.email = currentUserEmail;
-          this.username = user.username;
-          this.userPlants = user.plants || [];
+        (response) => {
+          this.currentUser = response;
+          this.email = this.currentUser.email; // Set this.email to the user's email address
+          this.username = response.username;
+  
+          // Retrieve the planter associated with the logged-in user
+          this.planterService.getPlantersByUserId(this.currentUser.userId).subscribe(
+            (planters: Planter[]) => {
+              this.userPlanter = [...planters];
+            },
+            (error) => console.log(error)
+          );
         },
         (error) => console.log(error)
       );
     }
-    // this.currentUser = this.userService.isCurrentUser();
-    // this.email = this.currentUser.email;
-    // this.username = this.currentUser.username;
-    // this.userPlants = this.currentUser.plants || [];
   }
-
+  
   getPlants() {
     this.plantService.getAllPlants().subscribe(
       (plants: Plant[]) => {
         this.plants = plants;
+        console.log(this.plants); 
       },
       (error) => console.log(error)
     );
-  }  addPlant() {
-    const selectedPlant = this.plants.find(plant => plant.id === this.selectedPlantId);
-    if (selectedPlant && !this.userPlants.includes(selectedPlant)) {
-      this.userPlants.push(selectedPlant);
-      this.currentUser.plants = this.userPlants;
-      this.userService.updateUser(this.email, this.currentUser).subscribe(
-        (response) => {
-          // User updated successfully
-        },
-        (error) => {
-          console.error(error);
-          alert('Error updating user');
-        }
-      );
+  }
+  
+  addPlant() {
+    const selectedPlant = this.plants.find(plant => plant.plantId === this.selectedPlantId);
+    if (selectedPlant) {
+      if (!this.currentUser.plants) {
+        this.currentUser.plants = [];
+      }
+      if (!this.currentUser.plants.includes(selectedPlant)) {
+        this.currentUser.plants.push(selectedPlant);
+        this.userService.updateUser(this.email, this.currentUser).subscribe(
+          (response) => {
+            alert('User updated successfully');
+            // Create a new planter with the selected plant's plantId
+            const newPlanter: Planter = {
+              userId: this.currentUser.userId,
+              plantId: selectedPlant.plantId,
+              plantName: selectedPlant.plantName,
+              sensorDataList: []
+            };
+            this.planterService.savePlanter(newPlanter).subscribe(
+              (response) => {
+                alert('Planter created successfully');
+                // Refresh the user's planters
+                this.planterService.getPlantersByUserId(this.currentUser.userId).subscribe(
+                  (planters: Planter[]) => {
+                    this.userPlanter = [...planters];
+                  },
+                  (error) => console.log(error)
+                );
+              },
+              (error) => {
+                console.error(error);
+                alert('Error creating planter');
+              }
+            );
+          },
+          (error) => {
+            console.error(error);
+            alert('Error updating user');
+          }
+        );
+      }
     }
   }
-}
+  }
+
+  //  addPlant() {
+  //   const selectedPlant = this.plants.find(plant => plant.plantId === this.selectedPlantId);
+  //   if (selectedPlant) {
+  //     if (!this.currentUser.plants) {
+  //       this.currentUser.plants = [];
+  //     }
+  //     if (!this.currentUser.plants.includes(selectedPlant)) {
+  //       this.currentUser.plants.push(selectedPlant);
+  //       this.userService.updateUser(this.email, this.currentUser).subscribe(
+  //         (response) => {
+  //           alert('User updated successfully') ;
+  //         },
+  //         (error) => {
+  //           console.error(error);
+  //           alert('Error updating user');
+  //         }
+  //       );
+  //     }
+  //   }
+  // }
+  
+
 
 
 

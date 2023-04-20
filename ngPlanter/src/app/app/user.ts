@@ -6,6 +6,7 @@ export class User {
   password: string;
   phone: number;
   plants: Plant[] = [];
+  userId: string = '';
 
   constructor(email: string, username: string, password: string, phone: number) {
     this.email = email;
