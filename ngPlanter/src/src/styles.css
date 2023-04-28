@@ -1,0 +1,113 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+    background-color: #eaf7d8;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #888888;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  h2 {
+    text-align: center;
+    font-weight: bold;
+    color: #3b3b3b;
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    color: #3b3b3b;
+  }
+  
+  .form-group input {
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 5px #888888;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px #53a548;
+  }
+  
+  .form-group .text-danger {
+    font-size: 14px;
+    color: #e60000;
+    margin-top: 5px;
+    display: none;
+  }
+  
+  .form-group .is-invalid {
+    border: 1px solid #e60000;
+  }
+  
+  .form-group .is-invalid + .text-danger {
+    display: block;
+  }
+  
+  .btn-info {
+    background-color: #53a548;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-info:hover {
+    background-color: #43803f;
+  }
+  
+  .float-right {
+    font-size: 14px;
+    color: #3b3b3b;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .float-right:hover {
+    color: #53a548;
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .container {
+      margin-top: 20px;
+    }
+    
+    h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    .form-group input {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .btn-info {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+    
+    .float-right {
+      font-size: 12px;
+      margin-top: 5px;
+    }
+  }
+  

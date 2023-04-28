@@ -1,0 +1,25 @@
+.main-container {
+  display: inline-block;
+}
+
+.main-container .side-bar {
+  
+  width: 350px;
+  min-width: 230px;
+  min-height: calc(110vh - 50px);
+  background-color: #102415;
+  color: #fff;
+  box-shadow: 5px 5px 5px #939393;
+
+  @media only screen and (max-width: 1300px) {
+    float: left;
+    width: 25%;
+  }
+}
+
+.main {
+  
+  padding: 20px;float: right;
+  width: 75%;
+}
+  
