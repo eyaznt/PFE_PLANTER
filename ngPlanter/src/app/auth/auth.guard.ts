@@ -6,29 +6,19 @@ import { UserService } from '../user.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private router: Router) {}
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log('AuthGuard activated');
-    if (this.userService.isCurrentUserLogged()) {
-      return true;
-    } else {
+    const requiredRole = route.data['requiredRole'];
+    const currentUserRole = sessionStorage.getItem('currentUserRole'); // retrieve the user role from the session storage
+  
+    if (!currentUserRole || currentUserRole !== requiredRole) { // check if currentUserRole is not equal to requiredRole or null/undefined
+      console.log('Access denied for user with role ' + currentUserRole);
       this.router.navigate(['/login']);
       return false;
     }
+  
+    console.log('AuthGuard activated');
+    return true;
   }
-}
-
-//   canActivate( // methode qui controle l'acces à d autre route
-//   //route actuel et route suivant
-//   next: ActivatedRouteSnapshot,
-//   state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-//   if (this.authService.isLoggedIn()) {
-//     //si l user est authentifié return true pour acceder a page suivante
-//     return true;
-//   } else {
-//     // Si l'utilisateur n'est pas authentifié, rester dans login
-//     return this.router.parseUrl('/login');
-//   }
-// }
-
+  }

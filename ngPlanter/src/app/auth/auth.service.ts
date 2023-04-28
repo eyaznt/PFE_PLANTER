@@ -8,10 +8,10 @@ export class AuthService {
 
   constructor() { }
 
-  login() {
-    // Set the authentication state to true
-    this.authentication = true;
-  }
+  // login() {
+  //   // Set the authentication state to true
+  //   this.authentication = true;
+  // }
 
   // Check if user is logged in by checking if the authentication state is true
   isLoggedIn(): boolean {

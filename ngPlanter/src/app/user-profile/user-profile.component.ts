@@ -3,9 +3,7 @@ import { PlantService } from '../plant.service';
 import { Plant } from '../plant';
 import { UserService } from './../user.service';
 import { User } from '../user';
-import { AuthGuard } from '../auth/auth.guard';
 import 'zone.js/dist/long-stack-trace-zone';
-import { AuthService } from '../auth/auth.service';
 import { PlanterService } from '../planter.service';
 import { Planter } from '../planter';
 
@@ -27,8 +25,6 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private plantService: PlantService,
     private userService: UserService,
-    private authGuard: AuthGuard,
-    private authService: AuthService,
     private planterService: PlanterService,
   ) {
     this.currentUser = new User('', '', '', 0);

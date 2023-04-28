@@ -8,10 +8,14 @@ import { Plant } from './plant';
 })
 export class PlantService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private _http: HttpClient) { }
 
   getAllPlants(): Observable<Plant[]> {
-    return this.http.get<Plant[]>('http://localhost:8080/api/plants');
+    return this._http.get<Plant[]>('http://localhost:8080/api/plants');
+  }
+  getPlantById(plantId:string): Observable<any> {
+    const url = `http://localhost:8080/api/plants/${plantId}` ;
+    return this._http.get<Plant>(url);
   }
 }
 

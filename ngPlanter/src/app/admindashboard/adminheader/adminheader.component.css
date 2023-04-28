@@ -1,0 +1,36 @@
+.header {
+    height: 70px;
+    padding: 20px 50px;
+    background-color: rgb(4, 21, 6);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 5px 5px 5px #939393;
+  }
+  
+  .header .logo img {
+    width: 50px;
+    height: auto;
+  }
+  
+  .header .user {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+  }
+  
+  .header .user .notifications {
+    margin-left: 50px;
+    margin-right: 50px; /* Add some margin to the right */
+    display: flex;
+    align-items: center;
+  }
+  .header .user .logout {
+    margin-left: 50px;
+    margin-right: 50px; /* Add some margin to the right */
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  

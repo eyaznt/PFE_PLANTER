@@ -29,39 +29,44 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.loginForm.value);
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
     const user = new User(email, '', password, 0);
-
     this.userService.loginUserFromRemote(user).subscribe(
-      (data) => {
-        // The authentication was successful, so log the user in and navigate to the profile page
-        this.authService.login();
+      (data: any) => {
+        console.log("Login successful:", data);
+        // if (data && data.email === 'admin@admin.com' && data.password === 'admin') {
 
-        this.router.navigate(['/profile']);
+        if (data && data.role === 'ADMIN') {
+          console.log("Navigating to admin dashboard...");
+          console.log(data);
+          this.router.navigate(['/admindash']);
+          
+        } else {
+          console.log("Navigating to user dashboard...");
+          console.log(data);
+
+          this.router.navigate(['/dashboard']);
+        }
       },
       (error) => {
-        // The authentication was unsuccessful, so display an error message to the user
         alert('Incorrect email or password');
-        console.log("exception occurred");
+        console.log("Login error:");
         console.error(error);
         console.log(error.status);
         console.log(error.error);
       }
     );
+    }
+    get email() {
+      return this.loginForm.get('email');
+    }
+  
+    get password() {
+      return this.loginForm.get('password');
+    }
   }
-
-  get email() {
-    return this.loginForm.get('email');
-  }
-
-  get password() {
-    return this.loginForm.get('password');
-  }
-}
-
-// import { User } from './../user';
+  // import { User } from './../user';
 // import { Component, OnInit } from '@angular/core';
 // import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // import { Router } from '@angular/router';
@@ -121,3 +126,7 @@ export class LoginComponent implements OnInit {
 //     return this.loginForm.get('password');
 //   }
 // }
+  
+  
+
+
