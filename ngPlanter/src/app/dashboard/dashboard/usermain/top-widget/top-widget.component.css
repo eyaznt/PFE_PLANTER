@@ -1,0 +1,63 @@
+/* Widget container styles */
+.widget-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #85c393; /* Cool green color */
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Widget title styles */
+  .widget-container h1 {
+    font-size: 24px;
+    margin: 0;
+    margin-right: 20px;
+    flex: 1;
+  }
+  
+  /* Widget content styles */
+  .widget-container p {
+    margin: 0;
+    flex: 1;
+  }
+  
+  .widget-container .btn-primary {
+    margin-top: 10px;
+    background-color: #4ca864; /* Darker shade of green */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .widget-container .btn-primary {
+    background-color: #3e8e55; /* Darker shade on hover */
+  }
+  
+  /* Form styles */
+  .form {
+    display: inline-block;
+    margin-left: 20px;
+  }
+  
+  .form .btn-primary {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #4ca864; /* Darker shade of green */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form .btn-primary:hover {
+    background-color: #3e8e55; /* Darker shade on hover */
+  }
+  

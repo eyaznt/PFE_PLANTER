@@ -1,0 +1,11 @@
+<div *ngIf="userPlanter.length > 0" class="plant-widget-container">
+  <!-- Display user's plants as images -->
+  <div *ngFor="let planter of userPlanter; trackBy: trackByPlantId" class="plant-widget">
+    <img [src]="'data:image/jpeg;base64,' + planter?.imageUrl" alt="Plant Image">
+    <p>{{ planter.plantName }}</p>
+  </div>
+</div>
+<div *ngIf="userPlanter.length === 0" class="no-plants-message">
+  <!-- Show message when no plants are added -->
+  <p>No plants added yet.</p>
+</div>

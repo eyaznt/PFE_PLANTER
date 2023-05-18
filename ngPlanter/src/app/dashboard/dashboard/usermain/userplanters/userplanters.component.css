@@ -1,0 +1,39 @@
+/* Plant widget container styles */
+.plant-widget {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #eaf3ec; /* Light green background */
+    color: #333; /* Dark text color */
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 400px; /* Adjust the width as per your preference */
+    height: 400px; /* Set the same value as the width for a square shape */
+    margin-right: 20px; /* Add space between the plant widgets */
+
+  }
+  
+  .plant-widget img {
+    max-width: 100%;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .plant-widget p {
+    margin: 0;
+  }
+  
+  /* Message styles */
+  .no-plants-message {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+  }
+  .plant-widget-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;}

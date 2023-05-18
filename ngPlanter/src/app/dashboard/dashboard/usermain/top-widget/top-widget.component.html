@@ -1,0 +1,24 @@
+<div class="widget-container">
+    <h1>User Info</h1>
+    <p>Name: {{ username }}</p>
+    <p>Email: {{ email }}</p>
+    <button type="button" class="btn btn-primary" (click)="showForm = true">Add Your Plant</button>
+  </div>
+  <div *ngIf="showForm">
+<form class="form" #myForm="ngForm" (ngSubmit)="submitForm(myForm)" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="plant">Select your plant:</label>
+        <select class="form-control" id="plant" name="selectedPlantId" required [(ngModel)]="selectedPlantId">
+          <option value="">-- Select a plant --</option>
+          <option *ngFor="let plant of plants" [value]="plant.plantId">{{ plant.plantName }}</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="plant-pic">Upload a picture of your plant:</label>
+        <input type="file" class="form-control-file" id="plant-pic" name="selectedFile" accept="image/*" required (change)="onFileSelected($event)">
+      </div>
+          
+      <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Submit</button>
+    </form>
+  </div>
