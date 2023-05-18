@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>{{data.plantName}}</h2>
+<div mat-dialog-content id="modal">
+  <p> Name: {{data.plantName}}</p>
+  <p>Type: {{data.type}}</p>
+  <p>Description: {{data.description}}</p>
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">Close</button>
+</div>

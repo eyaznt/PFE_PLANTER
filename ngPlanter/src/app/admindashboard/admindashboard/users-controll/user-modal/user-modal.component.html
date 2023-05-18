@@ -1,0 +1,15 @@
+<p>user-modal works!</p>
+<h2 mat-dialog-title>{{data.username}}</h2>
+<div mat-dialog-content>
+  <p>Full Name: {{data.username}}</p>
+  <p>Email: {{data.email}}</p>
+  <p>phone: {{data.phone}}</p>
+  <p>Plants:</p>
+  <ul>
+    <li *ngFor="let plant of data.plants">{{ plant.plantName }}</li>
+  </ul>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">Close</button>
+</div>
+
