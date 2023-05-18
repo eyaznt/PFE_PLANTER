@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './user';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +15,11 @@ export class UserService {
   constructor(private _http: HttpClient) { }
 
 
-  isCurrentUserLogged(): Boolean {
+  isCurrentUserLogged(): boolean {  
     const userJson = sessionStorage.getItem(this.currentUserKey);
     return userJson ==='true' ? true : false ;
   }  
+  
   loginUserFromRemote(user: User): Observable<any> {
     return this._http.post<any>('http://localhost:8080/users/login', user).pipe(
       map((response: any) => {
@@ -49,18 +50,26 @@ export class UserService {
   }
   getUserByEmail(email: string): Observable<User> {
     const url = `http://localhost:8080/users/${email}`;
-    return this._http.get<User>(url);
-  }
-  deleteUsers(email: string): Observable<any> {
+    return this._http.get<User>(url).pipe(
+      map((user: User) => {
+        user.userId = user.userId;
+        return user;
+      }),
+    );
+  }    
+    deleteUsers(email: string): Observable<any> {
     const url = `http://localhost:8080/users/delete/${email}`;
     return this._http.delete<User>(url);
   }
+
   getAllUsers(): Observable<User[]> {
     const url = `http://localhost:8080/users/all`;
     return this._http.get<User[]>(url);
   }
+
   getUserById (userId:string): Observable<any> {
     const url = `http://localhost:8080/users/users/${userId}` ;
     return this._http.get<User>(url);
   }
+
 }

@@ -35,6 +35,9 @@ import { UsersControllComponent } from './admindashboard/users-controll/users-co
 import { AdminheaderComponent } from './admindashboard/adminheader/adminheader.component';
 import { UserModalComponent } from './admindashboard/users-controll/user-modal/user-modal.component';
 import { PlantModalComponent } from './admindashboard/plants-controll/plant-modal/plant-modal.component';
+import { UsermainComponent } from './dashboard/usermain/usermain.component';
+import { TopWidgetComponent } from './dashboard/usermain/top-widget/top-widget.component';
+import { UserplantersComponent } from './dashboard/usermain/userplanters/userplanters.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +57,10 @@ import { PlantModalComponent } from './admindashboard/plants-controll/plant-moda
     UsersControllComponent,
     AdminheaderComponent,
    UserModalComponent,
-  PlantModalComponent   ],
+  PlantModalComponent,
+  UsermainComponent,
+  TopWidgetComponent,
+  UserplantersComponent   ],
   imports: [
     BrowserModule,
     AppRoutingModule,

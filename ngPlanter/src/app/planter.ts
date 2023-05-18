@@ -4,11 +4,14 @@ export class Planter {
     userId: string;
     plantId: string;
     plantName: string;
+    imageUrl: File;
     sensorDataList: SensorData[];
     
   
-    constructor(userId: string, plantId: string, plantName: string, sensorDataList: SensorData[]) {
+    constructor(userId: string, plantId: string, plantName: string, sensorDataList: SensorData[],  imageUrl: File
+      ) {
       this.userId = userId;
+      this.imageUrl=imageUrl;
       this.plantId = plantId;
       this.plantName = plantName;
       this.sensorDataList = sensorDataList;
