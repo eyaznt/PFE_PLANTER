@@ -1,0 +1,49 @@
+<div class="form-container mat-elevation-z5">
+  <h2>Sign up</h2>
+  <form [formGroup]="signupForm" (ngSubmit)="SignUp()">
+    <div class="form-group">
+      <label>Username</label>
+      <mat-form-field>
+        <input matInput formControlName="username" placeholder="Username">
+        <mat-error *ngIf="username?.errors?.['required']">Username is required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <mat-form-field>
+        <input matInput formControlName="email" placeholder="Email">
+        <mat-error *ngIf="email?.errors?.['required']">Email is required</mat-error>
+        <mat-error *ngIf="email?.errors?.['email']">Please enter a valid email format</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <label>Phone Number</label>
+      <mat-form-field>
+        <input matInput formControlName="phone" placeholder="Phone Number">
+        <mat-error *ngIf="phone?.errors?.['required']">Phone number is required</mat-error>
+      </mat-form-field>
+    </div>
+    
+    <div class="form-group">
+      <label>Password</label>
+      <mat-form-field>
+        <input matInput formControlName="password" type="password" placeholder="Password">
+        <mat-error *ngIf="password?.errors?.['required']">Password is required</mat-error>
+      </mat-form-field>
+    </div>
+    
+    <div class="form-group">
+      <label>Confirm Password</label>
+      <mat-form-field>
+        <input matInput formControlName="confirmPassword" type="password" placeholder="Confirm Password">
+        <mat-error *ngIf="confirmPassword?.errors?.['required']">Confirmation password is required</mat-error>
+        <mat-error *ngIf="confirmPassword?.value !== password?.value">Passwords do not match</mat-error>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button class="submit-button" type="submit" [disabled]="!signupForm.valid">Sign up</button>
+    <p>Already have an account? <a routerLink="/login">Log in here</a></p>
+  </form>
+  
+</div>
